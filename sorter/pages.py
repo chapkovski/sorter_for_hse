@@ -53,23 +53,25 @@ class SorterWP(WaitPage):
         num_arrived = len([p for p in self.session.get_participants() if p.vars.get('arrived_to_sorting')])
         config_keys = ['homo', 'hetero', 'city_1', 'city_2']
         homo, hetero, city_1_code, city_2_code = (self.session.config.get(i) for i in config_keys)
-
+        # if there are less than two cities participating, no sense to deal with homo or hetero
+        if len(self.session.vars['cities_list']) < 2:
+            homo = hetero = False
         parts = sorted(waiting_players, key=lambda x: x.participant.vars['city_code'])
         grouper = groupby(parts, key=lambda x: x.participant.vars['city_code'])
 
         if homo:
             for g, gl in grouper:
+                # if the size of any group is large enough, we pass their players further
                 if len(list(gl)) >= group_size:
                     players = [p for p in waiting_players if p.participant.vars.get('city_code') == g][:group_size]
                     return players
 
         if hetero:
+            # if number of groups is large enough so we can pick enough unique players from them we pass them forward
             if len(list(grouper)) >= group_size:
                 a_player = [p for p in waiting_players if p.participant.vars.get('city_code') == city_1_code][0]
                 b_player = [p for p in waiting_players if p.participant.vars.get('city_code') == city_2_code][0]
                 players = [a_player, b_player]
-                for p in players:
-                    print(p.participant.vars['city_name'])
                 return players
         if len(waiting_players) >= group_size:
 
