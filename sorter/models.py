@@ -36,7 +36,7 @@ class Subsession(BaseSubsession):
                          k.startswith('city_') and v.strip()  not in (None, '')]
         for c in config_cities:
             assert c in Constants.cities, NO_CITY_REGISTERED_MSG.format(c)
-        self.session.vars['cities_list'] = config_cities
+        self.session.vars['cities_list'] = list(set(config_cities))
 
 
 class Group(BaseGroup):

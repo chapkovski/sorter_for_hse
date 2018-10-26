@@ -10,13 +10,13 @@ SESSION_CONFIG_DEFAULTS = {
     'participation_fee': 0.00,
     'doc': "",
 }
-APP_SEQ = ['sorter',  'testing_matching']
+
 SESSION_CONFIGS = [
     {
         'name': 'sorter_test',
         'display_name': "Test of sorting app",
         'num_demo_participants': 4,
-        'app_sequence': APP_SEQ,
+        'app_sequence': ['sorter',  'testing_matching'],
         'city_1': '01',
         'city_2': '02',
         'homo': False,
@@ -27,7 +27,7 @@ SESSION_CONFIGS = [
         'name': 'sorter_test2',
         'display_name': "Test of sorting app - HETERO",
         'num_demo_participants': 4,
-        'app_sequence': APP_SEQ,
+        'app_sequence': ['sorter',  'testing_matching'],
         'city_1': '01',
         'city_2': '02',
         'homo': False,
@@ -38,7 +38,7 @@ SESSION_CONFIGS = [
         'name': 'sorter_test3',
         'display_name': "Test of sorting app - HOMO",
         'num_demo_participants': 4,
-        'app_sequence': APP_SEQ,
+        'app_sequence': ['sorter',  'testing_matching'],
         'city_1': '01',
         'city_2': '02',
         'homo': True,
