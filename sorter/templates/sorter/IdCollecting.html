@@ -1,0 +1,12 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Please insert the participant ID
+{% endblock %}
+
+{% block content %}
+{% formfield player.city_id%}
+    {% next_button %}
+
+{% endblock %}

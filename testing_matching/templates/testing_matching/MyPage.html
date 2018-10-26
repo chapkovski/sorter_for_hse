@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Role announcement
+{% endblock %}
+
+{% block content %}
+    <div class="alert alert-danger" role="alert">
+        <h3>Your role is: <strong>{{ player.role }}</strong>
+        </h3>
+
+    </div>
+    <div class="alert alert-info" role="alert">
+        <h3>You are from: <strong>{{ participant.vars.city_name }}</strong>
+        </h3>
+
+    </div>
+    {% next_button %}
+
+{% endblock %}
