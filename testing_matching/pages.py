@@ -20,6 +20,6 @@ class Results(Page):
 page_sequence = [
     SorterWP,
     MyPage,
-    ResultsWaitPage,
-    Results
+    # ResultsWaitPage,
+    # Results
 ]

@@ -73,13 +73,14 @@ class SorterWP(WaitPage):
                 b_player = [p for p in waiting_players if p.participant.vars.get('city_code') == city_2_code][0]
                 players = [a_player, b_player]
                 return players
-        if len(waiting_players) >= group_size:
 
+        # todo: something that unmatched players won't stuck forever here but proceed to the final page
+        if len(waiting_players) >= group_size:
             # if it is not neither homo nor hetero then we don't care about matching
             # if number of cities participating is less than 2, then we don't care about matching either
             if (len(self.session.vars['cities_list']) < group_size
-                or num_parts - num_arrived <= 0
-                or not any([homo, hetero])):
+                    or num_parts - num_arrived <= 0
+                    or not any([homo, hetero])):
                 return waiting_players[:group_size]
 
 

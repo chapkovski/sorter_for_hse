@@ -14,6 +14,7 @@ A single-player, single-page app collecting ids for players from several cities.
 NO_CITY_REGISTERED_MSG = '{}: No such city in cities list'
 BOTH_SORTING_OPTS_MSG = 'You cannot choose both hetero and homo sorting'
 WRONG_CITY_CODE_MSG = 'This city code ({}) is wrong. Check it out!'
+EVEN_PLRS_MSG = 'Number of players should be even'
 
 
 class Constants(BaseConstants):
@@ -38,6 +39,7 @@ class Subsession(BaseSubsession):
         for c in config_cities:
             assert c in Constants.cities, NO_CITY_REGISTERED_MSG.format(c)
         self.session.vars['cities_list'] = list(set(config_cities))
+        assert len(self.get_players()) % 2 == 0, EVEN_PLRS_MSG
 
 
 class Group(BaseGroup):
